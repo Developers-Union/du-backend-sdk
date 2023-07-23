@@ -46,7 +46,8 @@ const config = defineConfig([{
         terser(),
         json(),
         eslint({
-            throwOnError: true
+            throwOnError: true,
+            fix: true
         })
     ]
 }, {
