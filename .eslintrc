@@ -14,5 +14,10 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb"
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "999.999.999"
+    }
+  }
 }
