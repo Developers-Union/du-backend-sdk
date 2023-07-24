@@ -11,11 +11,13 @@ import json from '@rollup/plugin-json'
 import pkg from './package.json' assert { type: "json" }
 import {defineConfig} from "rollup"
 import eslint from '@rollup/plugin-eslint'
-const name = 'du-backend-sdk'
+import nodePolyfills from 'rollup-plugin-polyfill-node';
+const name = 'dbs'
 const dir = path.dirname(fileURLToPath(import.meta.url))
 
 const config = defineConfig([{
     input: path.resolve(dir, 'src/main.ts'),
+    // external: ['axios'],
     output: [
         {
             file: pkg.main,
@@ -29,26 +31,38 @@ const config = defineConfig([{
             name,
             file: pkg.umd,
             format: 'umd'
+        },
+        {
+            name,
+            file: pkg.iife,
+            format: "iife"
         }
     ],
     plugins: [
-        resolve(),
-        commonjs(),
+        resolve({
+            jsnext: true,
+            preferBuiltins: true,
+            browser: true
+        }),
+        commonjs({
+            browser: true
+        }),
         rollupTypescript(),
         babel({
-            babelHelpers: 'runtime',
+            babelHelpers: 'bundled',
             exclude: 'node_modules/**',
             extensions: [
                 ...DEFAULT_EXTENSIONS,
                 '.ts',
             ],
         }),
-        terser(),
+        // terser(),
         json(),
         eslint({
             throwOnError: true,
             fix: true
-        })
+        }),
+        nodePolyfills()
     ]
 }, {
     input: path.resolve(dir, 'src/main.ts'),
