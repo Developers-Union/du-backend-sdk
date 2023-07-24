@@ -6,5 +6,5 @@
 
 支持浏览器：
 ````browserslist
->0.3%, last 2 versions, not dead
+>1%, ie 10-11
 ````
