@@ -49,7 +49,7 @@ const config = defineConfig([{
         }),
         rollupTypescript(),
         babel({
-            babelHelpers: 'bundled',
+            babelHelpers: 'runtime',
             exclude: 'node_modules/**',
             extensions: [
                 ...DEFAULT_EXTENSIONS,
