@@ -41,7 +41,6 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
     "@babel/runtime-corejs3": "^7.22.6",
     "axios": "^1.4.0"
   },
